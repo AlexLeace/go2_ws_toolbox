@@ -40,7 +40,7 @@ Ubuntu 22.04 ROS2 humble
 
 2. **克隆仓库**  
    ```bash
-   git clone git@github.com:FishPlusDragon/unitree-go2-slam-toolbox.git
+   git clone https://github.com/Alann99999/go2_ws_toolbox.git
    ```  
 
 3. **编译工作空间**  
