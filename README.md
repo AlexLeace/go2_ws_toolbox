@@ -5,6 +5,8 @@
 2. 安装 ROS2 Humble 的 PC 主机  
 3. 5-10米网线（用于机器狗与PC连接）  
 
+## 适用环境
+Ubuntu 22.04 ROS2 humble
 
 ##  已实现功能  
 - Rviz2 中机器狗模型可视化  
@@ -60,4 +62,6 @@
      ros2 run teleop_twist_keyboard teleop_twist_keyboard
      ```
      
-> ⚠️ 注意：建图时建议将移动速度调至 0.3m/s 左右，步态选择“经典模式”以保证稳定性。
+>  注意：建图时建议将移动速度调至 0.3m/s 左右，步态选择“经典模式”以保证稳定性。
+
+>  🙏鸣谢：感谢原作者 https://github.com/FishPlusDragon/unitree-go2-slam-toolbox.git 提供了扎实的基础集成与清晰的参考实现，让我得以学习并快速上手。
