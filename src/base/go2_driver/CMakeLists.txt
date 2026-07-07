@@ -15,9 +15,6 @@ find_package(tf2_ros REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
 
-
-
-
 add_executable(driver src/driver.cpp)
 add_executable(footprint_to_link src/footprint_to_link.cpp)
 add_executable(lowstate_to_imu src/lowstate_to_imu.cpp)

@@ -35,7 +35,7 @@ def generate_launch_description():
 
     declare_map = DeclareLaunchArgument(
         name="map",
-        default_value=""
+        default_value="true"
     )
 
     declare_nav_params = DeclareLaunchArgument(
@@ -58,19 +58,19 @@ def generate_launch_description():
         default_value=""
     )
 
-    # 里程计融合imu
-    go2_robot_localization = IncludeLaunchDescription(
-            PythonLaunchDescriptionSource(
-                os.path.join(go2_core_pkg, "launch", "go2_robot_localization.launch.py")
-            )
-        )
-
     # 启动驱动包
     go2_driver_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(go2_driver_pkg, "launch", "driver.launch.py")
         )   
     )
+
+    # 里程计融合imu
+    go2_robot_localization = IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(
+                os.path.join(go2_core_pkg, "launch", "go2_robot_localization.launch.py")
+            )
+        )
 
     # Livox MID-360 激光雷达驱动
     go2_livox_launch = IncludeLaunchDescription(

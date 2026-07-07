@@ -20,6 +20,32 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
+        # 里程计消息发布、广播里程计坐标、发布关节状态信息
+        Node(
+            package="go2_driver",
+            executable="driver",
+            parameters=[os.path.join(go2_driver_pkg, "params", "driver.yaml")]
+        ),
+
+        # 速度消息桥接
+        Node(
+            package="go2_twist_bridge",
+            executable="twist_bridge"
+        ),
+
+        # 添加base_link到base_footprint的动态坐标转换
+        Node(
+            package="go2_driver",
+            executable="footprint_to_link"
+        ),
+
+
+        # imu
+        Node(
+            package="go2_driver",
+            executable="lowstate_to_imu"
+        ),
+
         use_rviz,
         # 机器人模型可视化
         IncludeLaunchDescription(
@@ -35,32 +61,6 @@ def generate_launch_description():
             arguments=["-d", os.path.join(go2_driver_pkg, "rviz", "display.rviz")],
             condition=IfCondition(LaunchConfiguration("use_rviz"))
         ),
-    
-        # 速度消息桥接
-        Node(
-            package="go2_twist_bridge",
-            executable="twist_bridge"
-        ),
-
-        # 添加base_link到base_footprint的动态坐标转换
-        Node(
-            package="go2_driver",
-            executable="footprint_to_link"
-        ),
-
-
-        # 里程计消息发布、广播里程计坐标、发布关节状态信息
-        Node(
-            package="go2_driver",
-            executable="driver",
-            parameters=[os.path.join(go2_driver_pkg, "params", "driver.yaml")]
-        ),
-
-        # imu
-        Node(
-            package="go2_driver",
-            executable="lowstate_to_imu"
-        )
     ])
 
 

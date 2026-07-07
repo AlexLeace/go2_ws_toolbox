@@ -5,16 +5,16 @@ from launch_ros.actions import Node
 def generate_launch_description():
     return LaunchDescription([
         Node(
-            package='go2_perception', executable='cloud_accumulation',
+            package='go2_perception', executable='cloud_accumulation',  # 发布节点
             remappings=[
-                ('/utlidar/cloud_accumulated', '/trans_cloud')
+                ('/utlidar/cloud_accumulated', '/trans_cloud') # 重映话题
                 ],
             name='cloud_accumulation_node'
         ),
         Node(
-            package='go2_perception', executable='pointcloud_to_laserscan_node',
+            package='go2_perception', executable='pointcloud_to_laserscan_node', # 接收节点
             remappings=[
-                ('cloud_in', '/trans_cloud'), 
+                ('cloud_in', '/trans_cloud'),   # 重映话题
                 ('scan', '/scan')
                 ],
             parameters=[{

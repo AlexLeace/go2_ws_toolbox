@@ -150,7 +150,7 @@ void PointCloudToLaserScanNode::subscriptionListenerThreadLoop()
   sub_.unsubscribe();
 }
 
-void PointCloudToLaserScanNode::cloudCallback(
+void PointCloudToLaserScanNode::(cloudCallback
   sensor_msgs::msg::PointCloud2::ConstSharedPtr cloud_msg)
 {
   // build laserscan output

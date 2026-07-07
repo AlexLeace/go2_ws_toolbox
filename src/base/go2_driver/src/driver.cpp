@@ -20,24 +20,15 @@ public:
     {
       RCLCPP_INFO(this->get_logger(), "Driver节点创建, 用于发布里程计消息，坐标变换和关节状态信息");
 
-      // 声明参数
-      // this->declare_parameter("publish_tf", true);
-
-      // 获取参数
-      // publish_tf = this->get_parameter("publish_tf").as_bool();
-
       //坐标变换广播器
       tf_bro_ = std::make_unique<tf2_ros::TransformBroadcaster>(*this);
 
       //运动状态订阅
       sub_ = this->create_subscription<unitree_go::msg::SportModeState>("/lf/sportmodestate", 10, std::bind(&Driver::state_cb, this, _1));
 
-
       odom_pub_ = this->create_publisher<nav_msgs::msg::Odometry>("odom", 10);
       robot_pose_sub_ = this->create_subscription<geometry_msgs::msg::PoseStamped>("/utlidar/robot_pose", 10, std::bind(&Driver::pose_callback, this, std::placeholders::_1));
 
-
-      
       //关节状态发布
       joint_state_pub_ = this->create_publisher<sensor_msgs::msg::JointState>("joint_states", 10);
       low_state_sub_ = this->create_subscription<unitree_go::msg::LowState>("/lf/lowstate", 10, std::bind(&Driver::low_state_cb, this, std::placeholders::_1));
@@ -57,7 +48,6 @@ private:
     // 创建订阅者，订阅机器狗高层运动状态
     rclcpp::Subscription<unitree_go::msg::SportModeState>::SharedPtr sub_;
     
-    // bool publish_tf, odom_published_;
     double body_height_;
 
     void state_cb(const unitree_go::msg::SportModeState::SharedPtr state_msg)

@@ -136,7 +136,7 @@ controller_server:
     FollowPath:
       plugin: "nav2_mppi_controller::MPPIController"
       time_steps: 56
-      model_dt: 0.05
+      model_dt: 0.1 # MPPI控制器的model_dt值应大于或等于控制器周期(15Hz)的倒数
       batch_size: 2000
       vx_std: 0.2
       vy_std: 0.2
